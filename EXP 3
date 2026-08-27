@@ -1,0 +1,76 @@
+!DOCTYPE html>
+<html>
+<head>
+    <title>Class Timetable</title>
+</head>
+
+<body>
+
+<h2 align="center">Class Timetable</h2>
+
+<table border="2" cellpadding="10" cellspacing="0" align="center">
+
+    <caption><b>B.Tech IT - Weekly Class Timetable</b></caption>
+
+    <tr bgcolor="orange">
+
+        <th>Day / Time</th>
+        <th>9:00 - 10:00</th>
+        <th>10:00 - 11:00</th>
+        <th>11:00 - 12:00</th>
+        <th>12:00 - 1:00</th>
+        <th>1:00 - 2:00</th>
+        <th>2:00 - 3:00</th>
+        <th>3:00 - 4:00</th>
+    </tr>
+
+    <tr>
+        <th>Monday</th>
+        <td>Mathematics</td>
+        <td>DBMS</td>
+        <td>DAA</td>
+        <td rowspan="5" bgcolor=" sky blue" align="center"> <b>Lunch Break</b></td>
+        <td>C Language</td>
+        <td colspan="2" align="center">Web Technology Lab</td>
+    </tr>
+
+    <tr>
+        <th>Tuesday</th>
+        <td>DAA</td>
+        <td>Ethical hacking</td>
+        <td>Web Technology</td>
+        <td>DBMS</td>
+        <td>Java</td>
+        <td>sports</td>
+    </tr>
+
+    <tr>
+        <th>Wednesday</th>
+        <td colspan="2" align="center">Database Lab</td>
+        <td>English</td>
+        <td>DAA</td>
+        <td>computer science</td>
+        <td>Seminar</td>
+    </tr>
+
+    <tr>
+        <th>Thursday</th>
+        <td>Python</td>
+        <td>DBMS</td>
+        <td>English</td>
+        <td colspan="2" align="center">Project Work</td>
+        <td>DAA</td>
+    </tr>
+
+    <tr>
+        <th>Friday</th>
+        <td>english</td>
+        <td>Python</td>
+        <td>DBMS</td>
+        <td>Web Technology</td>
+        <td colspan="2" align="center">Placement Training</td>
+    </tr>
+</table>
+
+</body>
+</html>
