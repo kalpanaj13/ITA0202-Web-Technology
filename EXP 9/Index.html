@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart & Billing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Product Shopping Cart</h1>
+
+    <!-- Product Form -->
+    <form id="productForm">
+      <label for="product">Product Name:</label>
+      <input type="text" id="product" required>
+
+      <label for="price">Price (₹):</label>
+      <input type="number" id="price" required>
+
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" min="1" value="1" required>
+
+      <button type="submit">Add to Cart</button>
+    </form>
+
+    <!-- Cart Table -->
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price (₹)</th>
+          <th>Quantity</th>
+          <th>Subtotal (₹)</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Billing Section -->
+    <div class="billing">
+      <p id="discount">Discount: ₹0</p>
+      <p id="tax">Tax (10%): ₹0</p>
+      <h3 id="total">Total: ₹0</h3>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
