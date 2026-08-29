@@ -1,0 +1,25 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #283593;
+}
+
+.box {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 2px solid #283593;
+  border-radius: 10px;
+  background: #e3f2fd;
+}
+
+#message {
+  color: red; /* corrected property name */
+  font-weight: bold;
+}
