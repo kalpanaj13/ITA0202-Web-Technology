@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observing Internet Protocols</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f3e5f5, #e1f5fe);
+      margin: 0;
+      padding: 20px;
+      color: #212121;
+    }
+
+    header {
+      background: linear-gradient(to right, #1565c0, #283593);
+      color: white;
+      text-align: center;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    section {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin: 25px auto;
+      max-width: 900px;
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    h2 {
+      color: #1565c0;
+      border-bottom: 2px solid #1565c0;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      line-height: 1.8;
+      font-size: 1.1em;
+    }
+
+    .highlight {
+      background-color: #fff9c4;
+      padding: 15px;
+      border-left: 5px solid #fbc02d;
+      border-radius: 5px;
+      margin-top: 15px;
+      font-size: 1.05em;
+    }
+
+    .protocol-box {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .protocol {
+      background: linear-gradient(to bottom, #bbdefb, #e3f2fd);
+      border-radius: 10px;
+      padding: 20px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .protocol:hover {
+      transform: scale(1.08);
+      background: linear-gradient(to bottom, #90caf9, #bbdefb);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #424242;
+      font-size: 1em;
+      padding: 15px;
+      background-color: #1565c0;
+      color: white;
+      border-radius: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌐 Observing Internet Protocols</h1>
+    <p>Using Browser Developer Tools Network Tab</p>
+  </header>
+
+  <section>
+    <h2>Steps to Observe Network Activity</h2>
+    <ul>
+      <li>Open your browser (Chrome, Edge, or Firefox).</li>
+      <li>Press <b>F12</b> or right-click → <i>Inspect</i> to open Developer Tools.</li>
+      <li>Go to the <b>Network</b> tab.</li>
+      <li>Reload the webpage to capture network requests.</li>
+      <li>Observe details like URL, Protocol, Request Method, Status Code, File Type, Size, and Loading Time.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Common Protocols</h2>
+    <div class="protocol-box">
+      <div class="protocol">
+        <b>HTTP</b><br>
+        HyperText Transfer Protocol<br>
+        Used for web communication.
+      </div>
+      <div class="protocol">
+        <b>HTTPS</b><br>
+        Secure version of HTTP<br>
+        Encrypts data for safety.
+      </div>
+      <div class="protocol">
+        <b>FTP</b><br>
+        File Transfer Protocol<br>
+        Transfers files between client and server.
+      </div>
+      <div class="protocol">
+        <b>DNS</b><br>
+        Domain Name System<br>
+        Converts domain names to IP addresses.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Observation Example</h2>
+    <p class="highlight">
+      When you load a webpage, your browser sends a <b>GET</b> request to the server using <b>HTTPS</b>.  
+      The server responds with a <b>Status Code 200 (OK)</b> and returns files like <i>HTML</i>, <i>CSS</i>, <i>JavaScript</i>, and <i>images</i>.  
+      You can view file size, type, and loading time in the Network tab.
+    </p>
+  </section>
+
+  <footer>
+    © 2026 | Designed by Kalpana J | Future Web Innovator 🚀
+  </footer>
+</body>
+</html>
