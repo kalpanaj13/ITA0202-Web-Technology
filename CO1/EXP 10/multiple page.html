@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Future College Website</title>
+  <style>
+    body {font-family:'Segoe UI'; margin:0; background:#f3f4f6;}
+    header {background:#1565c0; color:white; text-align:center; padding:25px;}
+    nav {background:#0d47a1; text-align:center; padding:12px;}
+    nav a {color:white; margin:0 15px; text-decoration:none; font-weight:bold; cursor:pointer;}
+    nav a:hover {text-decoration:underline;}
+    section {display:none; padding:30px; max-width:900px; margin:auto;}
+    section.active {display:block;}
+    img {border-radius:10px; width:80%; max-width:600px;}
+    table {width:100%; border-collapse:collapse; margin-top:20px;}
+    th, td {border:1px solid #1565c0; padding:10px; text-align:center;}
+    th {background:#1565c0; color:white;}
+    form {background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+    input, select, textarea {width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:5px;}
+    button {background:#1565c0; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;}
+    button:hover {background:#0d47a1;}
+    iframe {width:100%; height:300px; border:2px solid #1565c0; border-radius:10px;}
+    footer {background:#1565c0; color:white; text-align:center; padding:15px; margin-top:20px;}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏫 Future College</h1>
+    <p>Empowering Students for Tomorrow</p>
+  </header>
+
+  <nav>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('about')">About</a>
+    <a onclick="showPage('courses')">Courses</a>
+    <a onclick="showPage('registration')">Registration</a>
+    <a onclick="showPage('contact')">Contact</a>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="active">
+    <h2>Welcome to Future College</h2>
+    <p>Our college offers world‑class facilities, experienced faculty, and a vibrant campus life.</p>
+    <img src="https://cdn.pixabay.com/photo/2016/11/18/15/07/university-1839856_1280.jpg" alt="College Campus">
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p><b>Future College</b> aims to provide <i>quality education</i> and nurture <u>innovative minds</u>.</p>
+    <hr>
+    <h3>Highlights</h3>
+    <ul>
+      <li>Experienced Faculty</li>
+      <li>Modern Laboratories</li>
+      <li>Global Collaborations</li>
+    </ul>
+  </section>
+
+  <!-- Courses -->
+  <section id="courses">
+    <h2>Courses Offered</h2>
+    <table>
+      <tr><th>Course</th><th>Duration</th><th>Eligibility</th></tr>
+      <tr><td>B.Sc Computer Science</td><td>3 Years</td><td>12th Pass</td></tr>
+      <tr><td>B.Com</td><td>3 Years</td><td>12th Pass</td></tr>
+      <tr><td>B.A English</td><td>3 Years</td><td>12th Pass</td></tr>
+      <tr><td>MBA</td><td>2 Years</td><td>Graduate</td></tr>
+    </table>
+  </section>
+
+  <!-- Registration -->
+  <section id="registration">
+    <h2>Student Registration</h2>
+    <form>
+      <label>Name:</label>
+      <input type="text" required>
+      <label>Email:</label>
+      <input type="email" required>
+      <label>Course:</label>
+      <select>
+        <option>B.Sc Computer Science</option>
+        <option>B.Com</option>
+        <option>B.A English</option>
+        <option>MBA</option>
+      </select>
+      <label>Address:</label>
+      <textarea rows="4"></textarea>
+      <button type="submit">Register</button>
+    </form>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@futurecollege.edu | Phone: +91 98765 43210</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.469..."></iframe>
+  </section>
+
+  <footer>© 2026 Future College | Designed by Kalpana J</footer>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
