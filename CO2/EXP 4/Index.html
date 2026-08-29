@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Student Result Analysis System</h1>
+
+    <!-- Student Input Form -->
+    <form id="resultForm">
+      <label for="name">Student Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="marks">Marks (comma separated):</label>
+      <input type="text" id="marks" placeholder="e.g. 85,90,78,92" required>
+
+      <button type="submit">Add Result</button>
+    </form>
+
+    <!-- Results Table -->
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Marks</th>
+          <th>Total</th>
+          <th>Average</th>
+          <th>Highest</th>
+          <th>Lowest</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
