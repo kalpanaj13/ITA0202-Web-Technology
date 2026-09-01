@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cross‑Browser Compatibility Dashboard</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #f1f8e9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h1::before {
+      content: "🧩";
+      font-size: 30px;
+    }
+
+    #dashboard {
+      background: #ffffff;
+      width: 520px;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 0.6s ease;
+    }
+
+    #dashboard:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      transition: background 0.3s;
+    }
+
+    .info:hover {
+      background: #e3f2fd;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    .value {
+      color: #007bff;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* CSS Feature Detection Example */
+    @supports (display: grid) {
+      #dashboard {
+        border-left: 5px solid #007bff;
+      }
+    }
+
+    @supports not (display: grid) {
+      #dashboard {
+        border-left: 5px solid #e74c3c;
+      }
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cross‑Browser Compatibility Dashboard</h1>
+
+  <div id="dashboard">
+    <div class="info"><span class="label">localStorage Support:</span> <span id="storage" class="value"></span></div>
+    <div class="info"><span class="label">querySelector() Support:</span> <span id="selector" class="value"></span></div>
+    <div class="info"><span class="label">CSS Grid Support:</span> <span id="cssSupport" class="value"></span></div>
+    <div class="info"><span class="label">Fallback Message:</span> <span id="fallback" class="value"></span></div>
+  </div>
+
+  <footer>© 2026 Compatibility Insights | Powered by JavaScript Feature Detection</footer>
+
+  <script>
+    // Feature detection for localStorage
+    let storageSupport = false;
+    try {
+      storageSupport = 'localStorage' in window && window.localStorage !== null;
+    } catch (e) {
+      storageSupport = false;
+    }
+    document.getElementById("storage").textContent = storageSupport ? "✅ Supported" : "❌ Not Supported";
+
+    // Feature detection for querySelector()
+    const selectorSupport = typeof document.querySelector === "function";
+    document.getElementById("selector").textContent = selectorSupport ? "✅ Supported" : "❌ Not Supported";
+
+    // CSS feature detection using JS
+    const cssGridSupport = CSS.supports("display", "grid");
+    document.getElementById("cssSupport").textContent = cssGridSupport ? "✅ Supported" : "⚠️ Fallback Mode";
+
+    // Fallback message
+    let fallbackMessage = "";
+    if (!storageSupport) fallbackMessage += "Using cookies instead of localStorage. ";
+    if (!selectorSupport) fallbackMessage += "Using getElementById() for selection. ";
+    if (!cssGridSupport) fallbackMessage += "Using flexbox layout fallback.";
+    document.getElementById("fallback").textContent = fallbackMessage || "All features supported 🎉";
+
+    // Example fallback implementation
+    if (!storageSupport) {
+      document.cookie = "user=Kalpana";
+    }
+  </script>
+</body>
+</html>
