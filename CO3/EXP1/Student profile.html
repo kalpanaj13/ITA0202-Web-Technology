@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    #profile {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="heading">🎓 Student Profile</h1>
+
+  <div id="profile">
+    <img id="photo" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" 
+         alt="Student Photo" width="120" style="border-radius:50%;">
+    <p id="name"><b>Name:</b> Kalpana J</p>
+    <p id="dept"><b>Department:</b> Computer Science</p>
+    <p id="year"><b>Year:</b> Final Year (2026)</p>
+  </div>
+
+  <div>
+    <button onclick="changeHeading()">Change Heading</button>
+    <button onclick="changeTextColor()">Change Text Colour</button>
+    <button onclick="changeBackground()">Change Background</button>
+    <button onclick="toggleProfile()">Show/Hide Profile</button>
+  </div>
+
+  <script>
+    function changeHeading() {
+      // Using getElementById
+      document.getElementById("heading").textContent = "🌟 Updated Student Profile";
+    }
+
+    function changeTextColor() {
+      // Using querySelector
+      document.querySelector("#profile").style.color = "darkblue";
+    }
+
+    function changeBackground() {
+      // Using style property
+      document.body.style.backgroundColor = "#d1f7d1";
+    }
+
+    function toggleProfile() {
+      // Using classList
+      document.getElementById("profile").classList.toggle("hidden");
+    }
+
+    // Example of setAttribute
+    document.getElementById("photo").setAttribute("alt", "Kalpana Profile Photo");
+  </script>
+</body>
+</html>
