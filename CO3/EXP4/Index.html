@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Browser Information Dashboard</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #e8f5e9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h1::before {
+      content: "🌐";
+      font-size: 30px;
+    }
+
+    #dashboard {
+      background: #ffffff;
+      width: 520px;
+      padding: 25px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    #dashboard:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: #f9f9f9;
+      transition: background 0.3s;
+    }
+
+    .info:hover {
+      background: #e3f2fd;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #34495e;
+    }
+
+    .value {
+      color: #007bff;
+      font-weight: 500;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #dashboard {
+      animation: fadeIn 0.6s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>Browser Information Dashboard</h1>
+
+  <div id="dashboard">
+    <div class="info"><span class="label">Current URL:</span> <span id="url" class="value"></span></div>
+    <div class="info"><span class="label">Browser Language:</span> <span id="language" class="value"></span></div>
+    <div class="info"><span class="label">Online Status:</span> <span id="status" class="value"></span></div>
+    <div class="info"><span class="label">Screen Width:</span> <span id="screenW" class="value"></span></div>
+    <div class="info"><span class="label">Screen Height:</span> <span id="screenH" class="value"></span></div>
+    <div class="info"><span class="label">Viewport Width:</span> <span id="viewW" class="value"></span></div>
+    <div class="info"><span class="label">Viewport Height:</span> <span id="viewH" class="value"></span></div>
+    <div class="info"><span class="label">Scroll X Position:</span> <span id="scrollX" class="value"></span></div>
+    <div class="info"><span class="label">Scroll Y Position:</span> <span id="scrollY" class="value"></span></div>
+  </div>
+
+  <footer>© 2026 Browser Insights | Powered by JavaScript Window Object</footer>
+
+  <script>
+    function updateDashboard() {
+      document.getElementById("url").textContent = window.location.href;
+      document.getElementById("language").textContent = navigator.language;
+      document.getElementById("status").textContent = navigator.onLine ? "Online ✅" : "Offline ❌";
+      document.getElementById("screenW").textContent = screen.width + " px";
+      document.getElementById("screenH").textContent = screen.height + " px";
+      document.getElementById("viewW").textContent = window.innerWidth + " px";
+      document.getElementById("viewH").textContent = window.innerHeight + " px";
+      document.getElementById("scrollX").textContent = window.scrollX + " px";
+      document.getElementById("scrollY").textContent = window.scrollY + " px";
+    }
+
+    window.addEventListener("load", updateDashboard);
+    window.addEventListener("resize", updateDashboard);
+    window.addEventListener("scroll", updateDashboard);
+    window.addEventListener("online", updateDashboard);
+    window.addEventListener("offline", updateDashboard);
+  </script>
+</body>
+</html>
