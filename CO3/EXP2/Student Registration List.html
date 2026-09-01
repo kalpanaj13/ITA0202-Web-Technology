@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+    #studentList {
+      margin-top: 20px;
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    li {
+      margin: 5px 0;
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    .removeBtn {
+      background: red;
+      color: white;
+      margin-left: 10px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>📋 Student Registration</h1>
+
+  <div>
+    <input type="text" id="name" placeholder="Student Name">
+    <input type="text" id="regNo" placeholder="Register Number">
+    <input type="text" id="dept" placeholder="Department">
+    <button onclick="addStudent()">Add Student</button>
+    <button onclick="clearAll()">Clear All</button>
+  </div>
+
+  <ul id="studentList"></ul>
+
+  <script>
+    function addStudent() {
+      let name = document.getElementById("name").value;
+      let regNo = document.getElementById("regNo").value;
+      let dept = document.getElementById("dept").value;
+
+      if(name === "" || regNo === "" || dept === "") {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      // Create list item
+      let li = document.createElement("li");
+      li.textContent = `Name: ${name}, RegNo: ${regNo}, Dept: ${dept}`;
+
+      // Create remove button
+      let removeBtn = document.createElement("button");
+      removeBtn.textContent = "Remove";
+      removeBtn.className = "removeBtn";
+      removeBtn.onclick = function() {
+        li.remove(); // remove() method
+      };
+
+      // Append button to list item
+      li.appendChild(removeBtn);
+
+      // Append list item to student list
+      document.getElementById("studentList").appendChild(li);
+
+      // Clear input fields
+      document.getElementById("name").value = "";
+      document.getElementById("regNo").value = "";
+      document.getElementById("dept").value = "";
+    }
+
+    function clearAll() {
+      let list = document.getElementById("studentList");
+      // Using children and parentElement
+      while(list.children.length > 0) {
+        list.children[0].parentElement.removeChild(list.children[0]);
+      }
+    }
+  </script>
+</body>
+</html>
