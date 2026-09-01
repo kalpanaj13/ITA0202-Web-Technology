@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 400px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    input, select {
+      margin: 8px;
+      padding: 8px;
+      width: 80%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+    }
+    button:hover {
+      opacity: 0.8;
+    }
+    #msg {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Event Registration</h1>
+
+  <form id="eventForm" onsubmit="return submitForm(event)">
+    <input type="text" id="name" placeholder="Enter Name"
+           onfocus="highlight(this)" onblur="removeHighlight(this)"
+           oninput="liveUpdate()" required><br>
+
+    <input type="text" id="regNo" placeholder="Register Number"
+           onchange="showChangeMessage()" required><br>
+
+    <select id="dept" onchange="showDeptMessage()" required>
+      <option value="">Select Department</option>
+      <option value="CSE">CSE</option>
+      <option value="ECE">ECE</option>
+      <option value="MECH">MECH</option>
+    </select><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p id="msg"></p>
+
+  <script>
+    // Intrinsic event functions
+    function highlight(el) {
+      el.style.backgroundColor = "#ffffcc";
+    }
+    function removeHighlight(el) {
+      el.style.backgroundColor = "white";
+    }
+    function liveUpdate() {
+      document.getElementById("msg").textContent =
+        "Typing: " + document.getElementById("name").value;
+    }
+    function showChangeMessage() {
+      document.getElementById("msg").textContent = "Register Number Changed!";
+    }
+    function showDeptMessage() {
+      document.getElementById("msg").textContent = "Department Selected!";
+    }
+    function submitForm(event) {
+      event.preventDefault();
+      document.getElementById("msg").textContent = "✅ Registration Submitted!";
+      return false;
+    }
+
+    // Modern event handling
+    const form = document.getElementById("eventForm");
+    const nameField = document.getElementById("name");
+    const registerBtn = document.querySelector("button");
+
+    // focus and blur
+    nameField.addEventListener("focus", () => {
+      nameField.style.border = "2px solid blue";
+    });
+    nameField.addEventListener("blur", () => {
+      nameField.style.border = "1px solid #ccc";
+    });
+
+    // button hover
+    registerBtn.addEventListener("mouseover", () => {
+      registerBtn.style.backgroundColor = "#28a745";
+    });
+    registerBtn.addEventListener("mouseout", () => {
+      registerBtn.style.backgroundColor = "#007bff";
+    });
+
+    // submit validation
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const regNo = document.getElementById("regNo").value;
+      const deptValue = document.getElementById("dept").value;
+
+      if (!name || !regNo || !deptValue) {
+        document.getElementById("msg").textContent =
+          "⚠️ Please fill all fields before submitting!";
+      } else {
+        document.getElementById("msg").textContent =
+          "🎯 Registered successfully via addEventListener!";
+      }
+    });
+  </script>
+</body>
+</html>
