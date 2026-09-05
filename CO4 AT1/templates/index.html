@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>University Course Analytics</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                UC
+            </div>
+
+            <div>
+                <h2>UniCore</h2>
+                <span>Academic Analytics</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#dashboard" class="nav-item active">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="#courses" class="nav-item">
+                <span>▦</span>
+                Courses
+            </a>
+
+            <a href="#analytics" class="nav-item">
+                <span>◈</span>
+                Analytics
+            </a>
+
+            <a href="#report" class="nav-item">
+                <span>▤</span>
+                XSLT Report
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="semester-card">
+
+                <span>CURRENT SEMESTER</span>
+
+                <strong>2026 — Semester I</strong>
+
+                <small>
+                    University Academic Office
+                </small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="eyebrow">
+                    UNIVERSITY ACADEMIC OFFICE
+                </span>
+
+                <h1>Course Enrollment Analysis</h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    XML Dataset Connected
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard">
+
+            <div class="hero">
+
+                <div>
+
+                    <span class="eyebrow">
+                        SEMESTER WORKLOAD INTELLIGENCE
+                    </span>
+
+                    <h2>
+                        Understand your course
+                        <span>enrollment.</span>
+                    </h2>
+
+                    <p>
+                        Analyze student enrollment, credits,
+                        course types and faculty workload
+                        using XML, XPath and XSLT.
+                    </p>
+
+                </div>
+
+                <div class="hero-number">
+                    <strong>{{ statistics.total_courses }}</strong>
+                    <span>COURSES</span>
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Students</span>
+                        <b>01</b>
+                    </div>
+
+                    <strong>
+                        {{ statistics.total_students }}
+                    </strong>
+
+                    <small>
+                        Across all courses
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Theory Courses</span>
+                        <b>02</b>
+                    </div>
+
+                    <strong>
+                        {{ statistics.theory_courses }}
+                    </strong>
+
+                    <small>
+                        Academic theory subjects
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Practical Courses</span>
+                        <b>03</b>
+                    </div>
+
+                    <strong>
+                        {{ statistics.practical_courses }}
+                    </strong>
+
+                    <small>
+                        Laboratory / practical
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Credits</span>
+                        <b>04</b>
+                    </div>
+
+                    <strong>
+                        {{ statistics.total_credits }}
+                    </strong>
+
+                    <small>
+                        Semester credit load
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section class="search-panel">
+
+            <div>
+
+                <span class="eyebrow">
+                    COURSE LOOKUP
+                </span>
+
+                <h2>Find a course</h2>
+
+            </div>
+
+            <div class="search-box">
+
+                <input
+                    id="courseSearch"
+                    type="text"
+                    placeholder="Enter course code e.g. WEB301"
+                >
+
+                <button onclick="searchCourse()">
+                    Search
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH RESULT -->
+
+        <section
+            id="courseResult"
+            class="course-result hidden"
+        ></section>
+
+
+        <!-- COURSES -->
+
+        <section id="courses">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        XML DATASET
+                    </span>
+
+                    <h2>All Courses</h2>
+
+                </div>
+
+                <div class="filters">
+
+                    <button
+                        class="filter active"
+                        onclick="filterCourses('All', 0, this)"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter"
+                        onclick="filterCourses('Theory', 0, this)"
+                    >
+                        Theory
+                    </button>
+
+                    <button
+                        class="filter"
+                        onclick="filterCourses('Practical', 0, this)"
+                    >
+                        Practical
+                    </button>
+
+                    <button
+                        class="filter"
+                        onclick="filterCourses('All', 50, this)"
+                    >
+                        &gt; 50 Students
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="course-grid" id="courseGrid">
+
+                {% for course in courses %}
+
+                <article class="course-card">
+
+                    <div class="course-card-top">
+
+                        <span class="course-code">
+                            {{ course.code }}
+                        </span>
+
+                        <span
+                            class="
+                            type-badge
+                            {% if course.type == 'Practical' %}
+                            practical
+                            {% endif %}
+                            "
+                        >
+                            {{ course.type }}
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        {{ course.name }}
+                    </h3>
+
+
+                    <p class="faculty">
+                        {{ course.faculty }}
+                    </p>
+
+
+                    <div class="course-metrics">
+
+                        <div>
+
+                            <span>Students</span>
+
+                            <strong>
+                                {{ course.students }}
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>Credits</span>
+
+                            <strong>
+                                {{ course.credits }}
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>ID</span>
+
+                            <strong>
+                                {{ course.id }}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="details-button"
+                        onclick="showCourse(
+                            '{{ course.code }}'
+                        )"
+                    >
+                        View Details →
+                    </button>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS -->
+
+        <section id="analytics" class="analytics-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        DATA INTERPRETATION
+                    </span>
+
+                    <h2>Academic Insights</h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="insight-grid">
+
+
+                <div class="insight-card highlight">
+
+                    <span>HIGHEST ENROLLMENT</span>
+
+                    <h3>
+                        {{ statistics.highest.name }}
+                    </h3>
+
+                    <strong>
+                        {{ statistics.highest.students }}
+                        students
+                    </strong>
+
+                    <p>
+                        {{ statistics.highest.code }}
+                        ·
+                        {{ statistics.highest.faculty }}
+                    </p>
+
+                </div>
+
+
+                <div class="insight-card">
+
+                    <span>LOWEST ENROLLMENT</span>
+
+                    <h3>
+                        {{ statistics.lowest.name }}
+                    </h3>
+
+                    <strong>
+                        {{ statistics.lowest.students }}
+                        students
+                    </strong>
+
+                    <p>
+                        {{ statistics.lowest.code }}
+                        ·
+                        {{ statistics.lowest.faculty }}
+                    </p>
+
+                </div>
+
+
+                <div class="insight-card">
+
+                    <span>4-CREDIT COURSES</span>
+
+                    <h3>
+                        {{ statistics.four_credit_courses }}
+                    </h3>
+
+                    <p>
+                        Courses carrying exactly
+                        4 credits.
+                    </p>
+
+                </div>
+
+
+                <div class="insight-card warning">
+
+                    <span>ADDITIONAL SUPPORT</span>
+
+                    <h3>
+                        {{ statistics.support_required }}
+                        courses
+                    </h3>
+
+                    <p>
+                        Courses with more than
+                        60 students require a TA.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUPPORT COURSES -->
+
+            <div class="support-list">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            TEACHING ASSISTANT ANALYSIS
+                        </span>
+
+                        <h2>
+                            Courses requiring support
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="support-items">
+
+                    {% for course in statistics.support_list %}
+
+                    <div class="support-item">
+
+                        <div class="support-number">
+                            {{ loop.index }}
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                {{ course.code }}
+                            </strong>
+
+                            <span>
+                                {{ course.name }}
+                            </span>
+
+                        </div>
+
+                        <div class="support-students">
+
+                            {{ course.students }}
+                            students
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- XSLT REPORT -->
+
+        <section id="report">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        XSLT TRANSFORMATION
+                    </span>
+
+                    <h2>
+                        High Enrollment Report
+                    </h2>
+
+                    <p>
+                        Generated dynamically from
+                        courses.xml using transform.xsl.
+                    </p>
+
+                </div>
+
+                <a
+                    class="report-button"
+                    href="/report"
+                    target="_blank"
+                >
+                    Open Full Report ↗
+                </a>
+
+            </div>
+
+
+            <div class="report-preview">
+
+                <div class="report-info">
+
+                    <span class="report-label">
+                        XSLT CONDITION
+                    </span>
+
+                    <code>
+                        course[students &gt; 40]
+                    </code>
+
+                </div>
+
+                <div class="report-info">
+
+                    <span class="report-label">
+                        SORT ORDER
+                    </span>
+
+                    <code>
+                        students DESC
+                    </code>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            <div>
+                UniCore Academic Analytics
+            </div>
+
+            <div>
+                XML · XPath · XSLT · Flask
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
