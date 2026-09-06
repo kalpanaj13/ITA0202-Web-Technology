@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Result Portal</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(255,255,255,0.25),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 85% 75%,
+                    rgba(255,255,255,0.20),
+                    transparent 25%
+                ),
+                linear-gradient(
+                    135deg,
+                    #1769aa 0%,
+                    #4f7ee8 40%,
+                    #7b61d9 70%,
+                    #d78bd8 100%
+                );
+
+            position: relative;
+
+            overflow-x: hidden;
+
+            padding: 35px 20px;
+        }
+
+
+        /* Decorative background shapes */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+
+            height: 500px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            top: -220px;
+
+            left: -180px;
+        }
+
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 450px;
+
+            height: 450px;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            border-radius: 50%;
+
+            bottom: -200px;
+
+            right: -150px;
+        }
+
+
+        /* Top Header */
+
+        .top-header {
+
+            max-width: 1100px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            color: white;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .brand-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            border: 3px solid white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+        }
+
+
+        .brand h2 {
+
+            font-size: 27px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .brand p {
+
+            font-size: 14px;
+
+            opacity: 0.9;
+
+            letter-spacing: 1px;
+        }
+
+
+        .technology {
+
+            font-size: 14px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-weight: bold;
+        }
+
+
+        /* Main Card */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            background:
+                rgba(255,255,255,0.96);
+
+            border-radius: 25px;
+
+            padding: 45px;
+
+            position: relative;
+
+            z-index: 2;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,0.25);
+        }
+
+
+        /* Main Heading */
+
+        .main-heading {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .main-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin: 0 auto 15px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-size: 35px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2196f3,
+                    #7048e8
+                );
+
+            color: white;
+
+            box-shadow:
+                0 10px 25px
+                rgba(80,80,200,0.3);
+        }
+
+
+        .main-heading h1 {
+
+            color: #173b78;
+
+            font-size: 36px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .main-heading p {
+
+            color: #7182a5;
+
+            font-size: 16px;
+        }
+
+
+        /* Section Heading */
+
+        .section {
+
+            margin-top: 28px;
+        }
+
+
+        .section-heading {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #173b78;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            padding-bottom: 12px;
+
+            border-bottom: 2px solid #e5eaf4;
+
+            margin-bottom: 22px;
+        }
+
+
+        .section-heading span {
+
+            font-size: 25px;
+        }
+
+
+        /* Input */
+
+        .form-group {
+
+            margin-bottom: 20px;
+        }
+
+
+        label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            color: #173b78;
+
+            margin-bottom: 8px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: 1px solid #cbd6ea;
+
+            border-radius: 10px;
+
+            padding: 0 16px;
+
+            font-size: 15px;
+
+            color: #333;
+
+            background: #fbfcff;
+
+            outline: none;
+
+            transition: all 0.3s ease;
+        }
+
+
+        input::placeholder {
+
+            color: #a5b3cc;
+        }
+
+
+        input:focus {
+
+            border-color: #4d7de8;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(77,125,232,0.12);
+        }
+
+
+        /* Marks */
+
+        .marks {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .subject-card {
+
+            background: #f8faff;
+
+            border: 1px solid #e1e8f5;
+
+            border-radius: 14px;
+
+            padding: 18px;
+
+            transition: 0.3s;
+        }
+
+
+        .subject-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(50,80,150,0.12);
+        }
+
+
+        .subject-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #173b78;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+        }
+
+
+        .subject-icon {
+
+            font-size: 21px;
+        }
+
+
+        /* Button */
+
+        .button {
+
+            width: 100%;
+
+            height: 58px;
+
+            margin-top: 30px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #119bea,
+                    #7048e8
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 25px
+                rgba(70,100,220,0.25);
+
+            transition: all 0.3s ease;
+        }
+
+
+        .button:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 15px 30px
+                rgba(70,100,220,0.35);
+        }
+
+
+        .button:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* Footer */
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 28px;
+
+            color: #7182a5;
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        .footer strong {
+
+            color: #4c65a0;
+        }
+
+
+        /* Responsive */
+
+        @media (max-width: 750px) {
+
+            .top-header {
+
+                flex-direction: column;
+
+                gap: 15px;
+
+                text-align: center;
+            }
+
+
+            .container {
+
+                padding: 30px 22px;
+            }
+
+
+            .marks {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .main-heading h1 {
+
+                font-size: 28px;
+            }
+
+        }
+
+
+        @media (max-width: 450px) {
+
+            body {
+
+                padding: 20px 10px;
+            }
+
+
+            .brand h2 {
+
+                font-size: 21px;
+            }
+
+
+            .brand-icon {
+
+                width: 50px;
+
+                height: 50px;
+            }
+
+
+            .container {
+
+                border-radius: 18px;
+
+                padding: 25px 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP HEADER -->
+
+    <div class="top-header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎓
+            </div>
+
+            <div>
+
+                <h2>Student Result Portal</h2>
+
+                <p>
+                    Check Your Performance &nbsp;•&nbsp;
+                    Build Your Future
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="technology">
+
+            🎓 Java Servlet & Apache Tomcat
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MAIN CARD -->
+
+    <div class="container">
+
+
+        <!-- TITLE -->
+
+        <div class="main-heading">
+
+            <div class="main-icon">
+                🎓
+            </div>
+
+            <h1>
+                Student Result Portal
+            </h1>
+
+            <p>
+                Enter student details and academic marks
+            </p>
+
+        </div>
+
+
+
+        <!-- FORM -->
+
+        <form action="studentResult" method="post">
+
+
+            <!-- STUDENT INFORMATION -->
+
+            <div class="section">
+
+                <div class="section-heading">
+
+                    <span>👤</span>
+
+                    Student Information
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Student Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter student name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="regno">
+                        Register Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="regno"
+                        name="regno"
+                        placeholder="Enter register number"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ACADEMIC MARKS -->
+
+            <div class="section">
+
+                <div class="section-heading">
+
+                    <span>📖</span>
+
+                    Academic Marks
+
+                </div>
+
+
+                <div class="marks">
+
+
+                    <!-- PHYSICS -->
+
+                    <div class="subject-card">
+
+                        <div class="subject-title">
+
+                            <span class="subject-icon">
+                                ⚛️
+                            </span>
+
+                            Physics
+
+                        </div>
+
+
+                        <input
+                            type="number"
+                            id="mark1"
+                            name="mark1"
+                            min="0"
+                            max="100"
+                            placeholder="0 - 100"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- MATHS -->
+
+                    <div class="subject-card">
+
+                        <div class="subject-title">
+
+                            <span class="subject-icon">
+                                🧮
+                            </span>
+
+                            Maths
+
+                        </div>
+
+
+                        <input
+                            type="number"
+                            id="mark2"
+                            name="mark2"
+                            min="0"
+                            max="100"
+                            placeholder="0 - 100"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- COMPUTER SCIENCE -->
+
+                    <div class="subject-card">
+
+                        <div class="subject-title">
+
+                            <span class="subject-icon">
+                                💻
+                            </span>
+
+                            Computer Science
+
+                        </div>
+
+
+                        <input
+                            type="number"
+                            id="mark3"
+                            name="mark3"
+                            min="0"
+                            max="100"
+                            placeholder="0 - 100"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+
+            <button
+                type="submit"
+                class="button">
+
+                🧮 &nbsp;
+                Calculate Student Result
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <strong>
+                Student Result Processing System
+            </strong>
+
+            <br>
+
+            Powered by Java Servlet & Apache Tomcat
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
